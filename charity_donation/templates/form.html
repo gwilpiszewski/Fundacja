@@ -1,16 +1,17 @@
-{% include 'index.html' %}
+{% extends 'index.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}" />
-  </head>
+{% block content %}
+{#<!DOCTYPE html>#}
+{#<html lang="pl">#}
+{#  <head>#}
+{#    <meta charset="UTF-8" />#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0" />#}
+{#    <meta http-equiv="X-UA-Compatible" content="ie=edge" />#}
+{#    <title>Document</title>#}
+{#    <link rel="stylesheet" href="{% static "css/style.css" %}" />#}
+{#  </head>#}
   <body>
-    <header class="header--form-page">
+    <header class="header--form-page" id="#add-donation">
       <nav class="container container--70">
         <ul class="nav--actions">
           <li class="logged-user">
@@ -31,7 +32,7 @@
 {#          <li><a href="form.html" class="btn btn--without-border">Przekaż dary</a></li>#}
 {#          <li><a href="index.html#contact" class="btn btn--without-border">Kontakt</a></li>#}
 {#        </ul>#}
-{#      </nav>#}
+      </nav>
 
       <div class="slogan container container--90">
         <div class="slogan--item">
@@ -60,6 +61,8 @@
         </div>
       </div>
     </header>
+
+
 
     <section class="form--steps">
       <div class="form--steps-instructions">
@@ -346,4 +349,5 @@
 
     <script src="{% static "js/app.js" %}"></script>
   </body>
-</html>
+
+{% endblock %}
