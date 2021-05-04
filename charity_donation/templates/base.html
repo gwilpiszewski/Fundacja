@@ -12,9 +12,6 @@
     <header class="header--main-page">
       <nav class="container container--70">
         <ul class="nav--actions">
-          <li><a href="{% url 'login_view' %}#login-page" class="btn btn--small btn--without-border">Zaloguj</a></li>
-          <li><a href="{% url 'register_view' %}#register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-        </ul>
 
         <ul>
           <li><a href="{% url 'main_view' %}" class="btn btn--without-border active">Start</a></li>
@@ -24,6 +21,23 @@
           <li><a href="{% url 'add_donation_view' %}#add-donation" class="btn btn--without-border">Przekaż dary</a></li>
           <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
+
+      {% if user.is_authenticated %}
+             <li class="logged-user">
+            Witaj {{ user.name }}
+            <ul class="dropdown">
+              <li><a href="#">Profil</a></li>
+              <li><a href="#">Ustawienia</a></li>
+              <li><a href="{% url 'logout_view' %}">Wyloguj</a></li>
+            </ul>
+          </li>
+            {% else %}
+
+          <li><a href="{% url 'login_view' %}" class="btn btn--small btn--without-border">Zaloguj</a></li>
+          <li><a href="{% url 'register_view' %}#register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+        </ul>
+            {% endif %}
+
       </nav>
 
       <div class="slogan container container--90">
@@ -61,6 +75,7 @@
         </div>
       </div>
 
+        <p></p>
     <section id="about-us" class="about-us">
       <div class="about-us--text">
         <h2>O nas</h2>
@@ -230,5 +245,5 @@
     </footer>
 
     <script src={% static "js/app.js" %}></script>
-  </body>
+
 </html>
