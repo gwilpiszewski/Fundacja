@@ -1,18 +1,32 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from charity_donation.models import User
+from django.views.generic import CreateView
+
+from charity_donation.models import User, Institution, Category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 
 
 class LandingPageView(View):
     def get(self, request):
-        return render(request, 'base.html')
+        fundations = Institution.objects.filter(type='Fundacja')
+        ngo = Institution.objects.filter(type='NGO')
+        zbiorki = Institution.objects.filter(type='Zbiórka lokalna')
+        return render(request, 'base.html', {'fundations': fundations,
+                                             'ngo': ngo,
+                                             'zbiorki': zbiorki})
+
+
+class CreateInstitutionView(LoginRequiredMixin, CreateView):
+    model = Institution
+    fields = ['name', 'description', 'type', 'categories']
+    success_url = '/'
 
 
 class AddDonationView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'form.html')
+        categories = Category.objects.all()
+        return render(request, 'form.html', {'categories': categories})
 
 
 class LogOutView(View):

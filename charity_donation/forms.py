@@ -1,4 +1,5 @@
 from django import forms
+from charity_donation.models import Institution
 
 
 class UserForm(forms.Form):
@@ -8,3 +9,7 @@ class UserForm(forms.Form):
     username = forms.CharField(max_length=128)
     password = forms.PasswordInput()
 
+
+class InstitutionForm(forms.ModelForm):
+    model = Institution
+    fields = ['name', 'description', 'type', 'categories']

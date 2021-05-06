@@ -12,6 +12,9 @@ class User(AbstractUser):
 class Category(models.Model):
     name = models.CharField(max_length=256)
 
+    def __str__(self):
+        return self.name
+
 
 class Institution(models.Model):
     FUNDACJA = 'Fundacja'
