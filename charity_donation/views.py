@@ -26,7 +26,11 @@ class CreateInstitutionView(LoginRequiredMixin, CreateView):
 class AddDonationView(LoginRequiredMixin, View):
     def get(self, request):
         categories = Category.objects.all()
-        return render(request, 'form.html', {'categories': categories})
+        institutions = Institution.objects.all()
+        return render(request, 'form.html', {'categories': categories, 'institutions': institutions})
+
+    # def post(self, request):
+    #     institutions = request.POST.getlist('categories')
 
 
 class LogOutView(View):
